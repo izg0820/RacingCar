@@ -9,22 +9,26 @@ import java.util.List;
 
 public class Cars {
 
-    private List<Car> cars;
+    private final List<Car> cars = new ArrayList<>();
 
     public Cars(String carsName) {
-        this.cars = splitCarsName(carsName);
+        String[] splitCarNames = splitCarsName(carsName);
+        validateCarName(splitCarNames);
+        for(String carName : splitCarNames) {
+            cars.add(new Car(carName, 0));
+        }
     }
 
-    private List<Car> splitCarsName(String carsName) {
-        String[] splitCarName = carsName.split(Constant.COMMA);
-        this.cars = new ArrayList<>();
+    private String[] splitCarsName(String carsName) {
+        return carsName.split(Constant.COMMA);
+    }
+
+    private void validateCarName(String[] splitCarName) {
         for (String carName : splitCarName) {
             if (isDuplicateCarName(carName)) {
                 throw new CustomIllegalArgumentException(ErrorMessage.CAR_NAME_DUPLICATE.getValue());
             }
-            cars.add(new Car(carName, 0));
         }
-        return cars;
     }
 
     private boolean isDuplicateCarName(String carName) {
