@@ -26,7 +26,7 @@ public class GameController {
     private void playGame(Cars cars, Repeat repeat) {
         while (!repeat.isEnd()) {
             cars.move();
-            ConsoleUtil.printStep(cars);
+            cars.printPosition();
             repeat.reduce();
         }
     }
