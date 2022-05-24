@@ -1,9 +1,9 @@
 package racingcar.model;
 
-import racingcar.constant.CarStatus;
 import racingcar.constant.Constant;
 import racingcar.constant.ErrorMessage;
 import racingcar.exception.CustomIllegalArgumentException;
+import racingcar.utils.StringUtil;
 
 public class Car {
 
@@ -33,8 +33,8 @@ public class Car {
         }
     }
 
-    public void setPosition(RandomNumber randomNumber) {
-        if (randomNumber.goOrStop() == CarStatus.Go) {
+    public void move(Integer randomNumber) {
+        if (randomNumber >= Constant.MOVE_CRITERIA) {
             this.position++;
         }
     }
@@ -45,5 +45,9 @@ public class Car {
 
     public String getName() {
         return this.name;
+    }
+
+    public void printPosition() {
+        System.out.printf("%s : %s\n", this.name, StringUtil.repeat(Constant.POSITION_MARK, this.position));
     }
 }

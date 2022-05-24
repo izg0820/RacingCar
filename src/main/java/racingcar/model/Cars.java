@@ -42,7 +42,7 @@ public class Cars {
 
     public void move() {
         cars.forEach(car ->
-                car.setPosition(new RandomNumber())
+                car.move(RandomNumber.getRandomNumber())
         );
     }
 
@@ -75,7 +75,10 @@ public class Cars {
         return max;
     }
 
-    public List<Car> getCars() {
-        return cars;
+    public void printPosition() {
+        for (Car car : this.cars) {
+            car.printPosition();
+        }
+        System.out.println();
     }
 }

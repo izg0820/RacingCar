@@ -27,4 +27,26 @@ public class CarTest {
                 new Cars("a,b,a")
         ).isInstanceOf(CustomIllegalArgumentException.class).hasMessageContaining("중복");
     }
+
+    @Test
+    public void 전진테스트() {
+        // Given
+        Car car = new Car("A", 0);
+
+        // When
+        car.move(4);
+        // Then
+        assertThat(car).extracting("position").isEqualTo(1);
+    }
+
+    @Test
+    public void 정지테스트() {
+        // Given
+        Car car = new Car("A", 0);
+
+        // When
+        car.move(3);
+        // Then
+        assertThat(car).extracting("position").isEqualTo(0);
+    }
 }
