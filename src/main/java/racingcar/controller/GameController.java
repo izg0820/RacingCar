@@ -17,18 +17,18 @@ public class GameController {
         playResult(cars);
     }
 
-    private void playResult(Cars cars) {
-        PlayResult result = cars.findWinner();
-        ConsoleUtil.print(ConsoleMessage.WINNER);
-        ConsoleUtil.print(result.resultSetting());
-    }
-
     private void playGame(Cars cars, Repeat repeat) {
         while (!repeat.isEnd()) {
             cars.move();
-            cars.printPosition();
+            ConsoleUtil.printPosition(cars);
             repeat.reduce();
         }
+    }
+
+    private void playResult(Cars cars) {
+        PlayResult playResult = new PlayResult(cars);
+        ConsoleUtil.print(ConsoleMessage.WINNER);
+        ConsoleUtil.print(playResult.getWinners());
     }
 
     private Repeat readRepeatTime() {

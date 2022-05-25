@@ -7,17 +7,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayResult {
-    List<String> winners;
+    List<Car> cars = new ArrayList<>();
 
-    public PlayResult() {
-        winners = new ArrayList<>();
+    public PlayResult(Cars cars) {
+        this.cars = cars.getCars();
     }
 
-    public String resultSetting() {
-        return StringUtil.joinWithComma(winners);
+    public String getWinners() {
+        List<String> winners = new ArrayList<>();
+        int max = findMaxPosition();
+        cars.forEach(car -> {
+            if (car.isMaxPosition(max)) {
+                winners.add(car.getName());
+            }
+        });
+        return String.join(",", winners);
     }
 
-    public void report(Car car) {
-        winners.add(car.getName());
+    private int findMaxPosition() {
+        int max = this.cars.get(0).getPosition();
+        for (Car car : cars) {
+            if (car.isMaxPosition(max)) {
+                max = car.getPosition();
+            }
+        }
+        return max;
     }
+
 }
