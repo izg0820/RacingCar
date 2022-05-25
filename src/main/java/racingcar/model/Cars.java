@@ -3,6 +3,7 @@ package racingcar.model;
 import racingcar.constant.Constant;
 import racingcar.constant.ErrorMessage;
 import racingcar.exception.CustomIllegalArgumentException;
+import racingcar.utils.ConsoleUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,14 +27,14 @@ public class Cars {
     private void validateCarName(String[] splitCarName) {
         for (String carName : splitCarName) {
             if (isDuplicateCarName(carName)) {
-                throw new CustomIllegalArgumentException(ErrorMessage.CAR_NAME_DUPLICATE.getValue());
+                throw new CustomIllegalArgumentException(ErrorMessage.CAR_NAME_DUPLICATE.getMessage());
             }
         }
     }
 
     private boolean isDuplicateCarName(String carName) {
         for (Car car : cars) {
-            if (carName.equals(car.getName())) {
+            if(car.isExists(carName)) {
                 return true;
             }
         }
@@ -46,39 +47,7 @@ public class Cars {
         );
     }
 
-    public List<Integer> getPositions() {
-        List<Integer> positions = new ArrayList<>();
-        cars.forEach(car ->
-                positions.add(car.getPosition())
-        );
-        return positions;
-    }
-
-    public PlayResult findWinner() {
-        PlayResult playResult = new PlayResult();
-        int max = findMaxPosition(cars);
-        cars.forEach(car -> {
-            if (car.getPosition() == max) {
-                playResult.report(car);
-            }
-        });
-        return playResult;
-    }
-
-    private int findMaxPosition(List<Car> cars) {
-        int max = cars.get(0).getPosition();
-        for (Car car : cars) {
-            if (car.getPosition() > max) {
-                max = car.getPosition();
-            }
-        }
-        return max;
-    }
-
-    public void printPosition() {
-        for (Car car : this.cars) {
-            car.printPosition();
-        }
-        System.out.println();
+    public List<Car> getCars() {
+        return cars;
     }
 }

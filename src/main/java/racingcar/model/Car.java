@@ -23,13 +23,13 @@ public class Car {
 
     private void validateCarNameSpace(String name) {
         if (name.contains(Constant.SPACE)) {
-            throw new CustomIllegalArgumentException(ErrorMessage.CAR_NAME_SPACE.getValue());
+            throw new CustomIllegalArgumentException(ErrorMessage.CAR_NAME_SPACE.getMessage());
         }
     }
 
     private void validateCarNameLength(String name) {
         if (name.length() > Constant.CAR_NAME_MAX_LENGTH || name.length() < Constant.CAR_NAME_MIN_LENGTH) {
-            throw new CustomIllegalArgumentException(ErrorMessage.CAR_NAME_WRONG.getValue());
+            throw new CustomIllegalArgumentException(ErrorMessage.CAR_NAME_WRONG.getMessage());
         }
     }
 
@@ -39,15 +39,19 @@ public class Car {
         }
     }
 
-    public Integer getPosition() {
-        return this.position;
+    public boolean isExists(String carName) {
+        return this.name.equals(carName);
+    }
+
+    public boolean isMaxPosition(int max) {
+        return this.position >= max;
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
-    public void printPosition() {
-        System.out.printf("%s : %s\n", this.name, StringUtil.repeat(Constant.POSITION_MARK, this.position));
+    public Integer getPosition() {
+        return this.position;
     }
 }
