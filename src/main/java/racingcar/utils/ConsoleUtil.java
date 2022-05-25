@@ -18,7 +18,7 @@ public class ConsoleUtil {
     }
 
     public static void print(ConsoleMessage message) {
-        System.out.printf("%s", message.getValue());
+        System.out.printf("%s", message.getMessage());
     }
 
     public static void print(String message) {

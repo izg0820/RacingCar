@@ -9,13 +9,13 @@ public enum ErrorMessage {
     REPEAT_TIME_NON_POSITIVE("시도할 횟수는 0보다 커야 합니다."),
     REPEAT_TIME_NON_NUMERIC("시도할 횟수는 숫자여야 합니다.");
 
-    private final String value;
+    private String message;
 
-    ErrorMessage(String value) {
-        this.value = value;
+    ErrorMessage(String message) {
+        this.message = message;
     }
 
-    public String getValue() {
-        return value;
+    public String getMessage() {
+        return message;
     }
 }

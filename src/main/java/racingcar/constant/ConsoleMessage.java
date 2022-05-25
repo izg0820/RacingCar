@@ -7,13 +7,13 @@ public enum ConsoleMessage {
     RESULT("실행결과\n"),
     WINNER("최종 우승자:");
 
-    private final String value;
+    private final String message;
 
-    ConsoleMessage(String value) {
-        this.value = value;
+    ConsoleMessage(String message) {
+        this.message = message;
     }
 
-    public String getValue() {
-        return value;
+    public String getMessage() {
+        return message;
     }
 }

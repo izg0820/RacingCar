@@ -24,14 +24,14 @@ public class Repeat {
         try {
             convertedRepeatNumber = Integer.parseInt(repeatNumber);
         } catch (NumberFormatException formatException) {
-            throw new CustomNumberFormatException(ErrorMessage.REPEAT_TIME_NON_NUMERIC.getValue());
+            throw new CustomNumberFormatException(ErrorMessage.REPEAT_TIME_NON_NUMERIC.getMessage());
         }
         return convertedRepeatNumber;
     }
 
     private void isPositive(int repeatNumber) {
         if (repeatNumber <= 0) {
-            throw new CustomIllegalArgumentException(ErrorMessage.REPEAT_TIME_NON_POSITIVE.getValue());
+            throw new CustomIllegalArgumentException(ErrorMessage.REPEAT_TIME_NON_POSITIVE.getMessage());
         }
     }
 

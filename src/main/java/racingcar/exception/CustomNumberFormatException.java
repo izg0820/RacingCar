@@ -7,6 +7,6 @@ public class CustomNumberFormatException extends NumberFormatException {
     }
 
     public CustomNumberFormatException(String message) {
-        super(ErrorMessage.PREFIX.getValue() + message);
+        super(ErrorMessage.PREFIX.getMessage() + message);
     }
 }
