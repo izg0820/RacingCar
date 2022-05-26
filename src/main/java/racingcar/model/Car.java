@@ -3,7 +3,6 @@ package racingcar.model;
 import racingcar.constant.Constant;
 import racingcar.constant.ErrorMessage;
 import racingcar.exception.CustomIllegalArgumentException;
-import racingcar.utils.StringUtil;
 
 public class Car {
 
