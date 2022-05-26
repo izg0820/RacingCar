@@ -1,7 +1,8 @@
 package racingcar.model;
 
-import racingcar.model.Car;
-import racingcar.utils.StringUtil;
+
+import racingcar.constant.ErrorMessage;
+import racingcar.exception.CustomIllegalStateException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,7 @@ public class PlayResult {
     }
 
     private int findMaxPosition() {
+        isExist();
         int max = this.cars.get(0).getPosition();
         for (Car car : cars) {
             if (car.isMaxPosition(max)) {
@@ -32,6 +34,12 @@ public class PlayResult {
             }
         }
         return max;
+    }
+
+    private void isExist() {
+        if(this.cars.size() == 0) {
+            throw new CustomIllegalStateException(ErrorMessage.RACING_CAR_NOT_EXISTING.getMessage());
+        }
     }
 
 }

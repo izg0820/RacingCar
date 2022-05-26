@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import racingcar.constant.ConsoleMessage;
 import racingcar.exception.CustomIllegalArgumentException;
+import racingcar.exception.CustomIllegalStateException;
 import racingcar.exception.CustomNumberFormatException;
 import racingcar.model.Cars;
 import racingcar.model.PlayResult;
@@ -18,10 +19,14 @@ public class GameController {
     }
 
     private void playGame(Cars cars, Repeat repeat) {
-        while (!repeat.isEnd()) {
-            cars.move();
-            ConsoleUtil.printPosition(cars);
-            repeat.reduce();
+        try {
+            while (!repeat.isEnd()) {
+                cars.move();
+                ConsoleUtil.printPosition(cars);
+                repeat.reduce();
+            }
+        }catch (CustomIllegalStateException exception) {
+            ConsoleUtil.printError(exception);
         }
     }
 

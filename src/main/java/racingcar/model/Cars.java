@@ -3,7 +3,7 @@ package racingcar.model;
 import racingcar.constant.Constant;
 import racingcar.constant.ErrorMessage;
 import racingcar.exception.CustomIllegalArgumentException;
-import racingcar.utils.ConsoleUtil;
+import racingcar.exception.CustomIllegalStateException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +41,14 @@ public class Cars {
         return false;
     }
 
+    private void isExist() {
+        if(cars.size() == 0) {
+            throw new CustomIllegalStateException(ErrorMessage.RACING_CAR_NOT_EXISTING.getMessage());
+        }
+    }
+
     public void move() {
+        isExist();
         cars.forEach(car ->
                 car.move(RandomNumber.getRandomNumber())
         );
